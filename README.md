@@ -1,18 +1,17 @@
 # Focus Timer Extensión
 
+![Captura de pantalla 2023-07-28 a las 10 37 02](https://github.com/attrix182/focus-timer-extension/assets/44885834/d3093c92-a477-43e5-8990-a62a4ba3950a)
+![Captura de pantalla 2023-07-28 a las 10 37 08](https://github.com/attrix182/focus-timer-extension/assets/44885834/ebe11a11-673c-408c-90a3-8054030f2582)
+
+
 ## Español
 
 Extensión que permite visualizar una cuenta regresiva en un borde de la pantalla, para mantener el foco durante ese tiempo en determinadas tareas.
 
-![Captura de pantalla 2023-07-28 a las 10 37 02](https://github.com/attrix182/focus-timer-extension/assets/44885834/d3093c92-a477-43e5-8990-a62a4ba3950a)
-![Captura de pantalla 2023-07-28 a las 10 37 08](https://github.com/attrix182/focus-timer-extension/assets/44885834/ebe11a11-673c-408c-90a3-8054030f2582)
 
 ## English
 
 An extension that allows you to display a countdown timer on the edge of the screen to maintain focus during specific tasks.
-
-![Screenshot 2023-07-28 at 10 37 02](https://github.com/attrix182/focus-timer-extension/assets/44885834/d3093c92-a477-43e5-8990-a62a4ba3950a)
-![Screenshot 2023-07-28 at 10 37 08](https://github.com/attrix182/focus-timer-extension/assets/44885834/ebe11a11-673c-408c-90a3-8054030f2582)
 
 ## Descripción
 
