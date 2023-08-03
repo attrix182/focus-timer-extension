@@ -3,9 +3,13 @@
   "name": "focus-timer",
   "short_name": "focus-timer",
   "version": "1.0.0",
-  "description": "Generated with @larscom/ng-chrome-extension",
+  "description": "This extensión helps to keep focus",
+  "icons": {
+    "16": "assets/icon/icon-16.png"
+  },
   "permissions": [
-    "tabs"
+    "tabs",
+    "storage"
   ],
   "action": {
     "default_popup": "index.html?#/popup",
@@ -17,8 +21,7 @@
         "contentPage.js"
       ],
       "matches": [
-        "<all_urls>",
-        "https://*.atlassian.net/*"
+        "<all_urls>"
       ]
     }
   ],

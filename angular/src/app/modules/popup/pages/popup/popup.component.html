@@ -1,21 +1,20 @@
 <div class="popup">
   <div class="popup__title">
     <h1>Focus Timer</h1>
+    {{eta}}
   </div>
 
   <div class="popup__times">
     <button class="popup__times-time" (click)="startTimer(5)">5:00</button>
-    <button  class="popup__times-time" (click)="startTimer(10) ">10:00</button>
-    <button  class="popup__times-time" (click)="startTimer(15)">15:00</button>
-    <button  class="popup__times-time" (click)="startTimer(20)">20:00</button>
-    <button  class="popup__times-time" (click)="startTimer(25)">25:00</button>
-    <button  class="popup__times-time" (click)="startTimer(30)">30:00</button>
+    <button class="popup__times-time" (click)="startTimer(10)">10:00</button>
+    <button class="popup__times-time" (click)="startTimer(15)">15:00</button>
+    <button class="popup__times-time" (click)="startTimer(20)">20:00</button>
+    <button class="popup__times-time" (click)="startTimer(25)">25:00</button>
+    <button class="popup__times-time" (click)="startTimer(30)">30:00</button>
+    <button class="popup__times-time" (click)="startTimer(35)">35:00</button>
   </div>
 
-    <!--
-      <button (click)="stopTimer()">Stop</button>
   <div>
-    <input placeholder="Custom time" type="number">
-    <button>Start</button>
-  </div> -->
+    <button class="popup__stop" (click)="stopTimer()">Stop</button>
+  </div>
 </div>
