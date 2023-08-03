@@ -3,9 +3,10 @@
   "name": "focus-timer",
   "short_name": "focus-timer",
   "version": "1.0.0",
-  "description": "This extensión helps to keep focus",
+  "description": "This extensión helps to keep focus on the tasks you are working on.",
   "icons": {
-    "16": "assets/icon/icon-16.png"
+    "16": "assets/icon/icon-16.png",
+    "128": "assets/icon/icon-128.png"
   },
   "permissions": [
     "tabs",

@@ -1,5 +1,4 @@
 let time = '';
-let intervalId;
 
 chrome.runtime.onMessage.addListener((request, sender, respond) => {
   let timeBox = document.getElementById('timeBox');
@@ -15,21 +14,19 @@ chrome.runtime.onMessage.addListener((request, sender, respond) => {
   if (request && request.duration) {
     stopTimer(timeBox);
     timeBox.style.display = 'block';
-    intervalId = startTimer(timeBox, duration - 1);
+    startTimer(timeBox, duration);
   }
 
   if (request && request.tabChanged) {
     let remainingTime = getElapsedTime();
 
-    let minutes = remainingTime!.remainingMinutes;
-    let seconds = remainingTime!.remainingSeconds;
-
-    if (minutes == -1 || seconds == -1) {
-      stopTimer(timeBox);
-      return;
-    }
-    console.log('Retomo con: ' + minutes + ':' + seconds);
-    restartTimer(timeBox, minutes + 1, seconds);
+    return setInterval(() => {
+      let remainingTime = getElapsedTime();
+      if(remainingTime <= '00:00') {
+        stopTimer(timeBox);
+      }
+      timeBox!.innerHTML = remainingTime;
+    });
   }
 
   if (request && request.stop) {
@@ -37,66 +34,37 @@ chrome.runtime.onMessage.addListener((request, sender, respond) => {
   }
 });
 
-function getElapsedTime() {
-  const timerInfo = JSON.parse(localStorage.getItem('timerInfo') || '{}');
-  const { startedAt, duration } = timerInfo;
-  console.log(timerInfo);
-  if (!startedAt || !duration) {
-    return { remainingMinutes: -1, remainingSeconds: -1 };
-  }
-
-  const now = new Date();
-  const startedTime = new Date(startedAt);
-  const elapsedSeconds = (now.getTime() - startedTime.getTime()) / 1000;
-  const remainingMinutes = Math.floor((duration * 60 - elapsedSeconds) / 60);
-  const remainingSeconds = Math.round((duration * 60 - elapsedSeconds) % 60);
-
-  console.log('Remaining: ' + remainingMinutes + ':' + remainingSeconds);
-  return {
-    remainingMinutes: isNaN(remainingMinutes) ? -1 : remainingMinutes,
-    remainingSeconds: isNaN(remainingSeconds) ? -1 : remainingSeconds
-  };
-}
-
-
-const restartTimer = (element, minutes, seconds = 60) => {
-  timer(element, minutes, seconds);
-}
-
-const startTimer = (element, minutes, seconds = 60) => {
-  localStorage.setItem('timerInfo', JSON.stringify({ startedAt: new Date().toISOString(), duration: minutes }));
-  timer(element, minutes, seconds);
+const startTimer = (element: HTMLElement, duration: number) => {
+  let finishTime = getFinish(duration).getTime();
+  localStorage.setItem('timerInfo', JSON.stringify({ finishAt: finishTime }));
+  return setInterval(() => {
+    let remainingTime = getElapsedTime();
+    if(remainingTime <= '00:00') {
+      stopTimer(element);
+    }
+    element.innerHTML = remainingTime;
+  });
 };
 
+const getElapsedTime = () => {
+  const timerInfo = JSON.parse(localStorage.getItem('timerInfo') || '{}');
+  const out = getMinutesRemaining(timerInfo.finishAt);
+  return new Date(out).toLocaleTimeString('es-ES', { minute: '2-digit', second: '2-digit' });
+};
 
-function timer(element ,minutes, seconds = 60){
-  var minute = minutes;
-  var sec = seconds;
+const getMinutesRemaining = (finishDate) => {
+  let now = new Date().getTime();
+  let finishParse = finishDate;
+  return finishParse - now;
+};
 
-  // Devolver el ID del intervalo para poder limpiarlo si es necesario
-  return setInterval(() => {
-    sec--;
-    if (sec.toString().length == 1) {
-      time = minute + ':0' + sec;
-      element.innerHTML = minute + ':0' + sec;
-    } else {
-      time = minute + ':' + sec;
-      element.innerHTML = time;
-    }
-    if (sec == 0) {
-      minute--;
-      sec = 60;
-
-      if (minute == 0) {
-        minute = 5;
-      }
-    }
-  }, 1000);
-}
+const getFinish = (duartion) => {
+  let now = new Date();
+  return new Date(now.getTime() + duartion * 60000); // 1 minute = 60000 milliseconds
+};
 
 // Función para detener el temporizador
 const stopTimer = (timeBox) => {
-  clearInterval(intervalId);
   localStorage.removeItem('timerInfo');
   timeBox.style.display = 'none';
 };
