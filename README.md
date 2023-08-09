@@ -1,6 +1,7 @@
 # Focus Timer Extensión
 
-![Captura de pantalla 2023-07-28 a las 10 37 02](https://github.com/attrix182/focus-timer-extension/assets/44885834/d3093c92-a477-43e5-8990-a62a4ba3950a)
+![Screenshot 2023-08-09 at 09 02 55](https://github.com/attrix182/focus-timer-extension/assets/44885834/e6f1935f-7315-458c-9ccb-c967bd4da27b)
+
 ![Captura de pantalla 2023-07-28 a las 10 37 08](https://github.com/attrix182/focus-timer-extension/assets/44885834/ebe11a11-673c-408c-90a3-8054030f2582)
 
 
